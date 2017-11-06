@@ -41,15 +41,22 @@
         <version>1.2.1</version>
         <executions>
           <execution>
-            <id>jdbc</id>
+            <id>simpleQuery</id>
             <goals>
               <goal>java</goal>
             </goals>
             <configuration>
-              <mainClass>lab2.App</mainClass>
-              <driver>${jdbc.driver}</driver>
-              <url>${jdbc.url}</url>
-              <user>${jdbc.user}</user>
+              <mainClass>lab2.SimpleQuery</mainClass>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>customQuery</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>lab2.CustomQuery</mainClass>
             </configuration>
           </execution>
         </executions>

@@ -6,9 +6,9 @@ import java.sql.*;
 /** 
  * JDBC Request
  */
-public class App {
+public class SimpleQuery {
 
-	protected static Logger log = Logger.getLogger(App.class);
+	protected static Logger log = Logger.getLogger(SimpleQuery.class);
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
 	static final String DB_URL = "jdbc:mysql://localhost/sakila";
@@ -24,34 +24,37 @@ public class App {
 
 	   	try{
 
-	    	log.info("Connecting to database...");
+	   		Class.forName(JDBC_DRIVER);
+
+	    	log.info("Connecting to database : " + DB_URL + " as : " + USER);
 	      	conn = DriverManager.getConnection(DB_URL,USER,PASS);
-	      	log.info("Connected to database !");
+	      	log.info("Connection : SUCCESS !");
 
 	      	log.info("Creating statement...");
+
 	      	stmt = conn.createStatement();
 	      	String sql = "SELECT last_name FROM actor";
+
+	      	log.debug("Executing statement: " + sql);
 	      	ResultSet rs = stmt.executeQuery(sql);
 
-	      	log.info(rs);
-	      	//STEP 5: Extract data from result set
 	      	while(rs.next()){
-	         	//Retrieve by column name
 
 	         	String last = rs.getString("last_name");
-
-	         	//Display values
 	         	System.out.println("Last name: " + last);
 	      	}
 	      
-	      	//STEP 6: Clean-up environment
+	      	log.info("End of the request...");
+
 	      	rs.close();
 	      	stmt.close();
 	      	conn.close();
 	   	} catch(SQLException se){
-	      	se.printStackTrace();
+	   		log.error("SQLException : " + se);
+
 	   	} catch(Exception e){
-	      	e.printStackTrace();
+	   		log.error("Exception : " + e);
+
 		}
 	}
 }
