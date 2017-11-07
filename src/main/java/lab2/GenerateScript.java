@@ -55,13 +55,13 @@ public class GenerateScript {
 
 	private static ArrayList<String> getColumnsName(ArrayList<String> tables) throws SQLException, Exception {
 		ResultSet rs = null;
-		ArrayList<String[]> columns;
+		ArrayList<String[]> columns = new ArrayList();
 
 		for(String currentTable : tables) {
 			rs = metadata.getTables(null, null, currentTable, null);
 
 			while(rs.next()) {
-				tables.add(new String[] {rs.getString("COLUMN_NAME"), rs.getString("COLUMN_NAME")});
+				columns.add(new String[] {rs.getString("COLUMN_NAME"), rs.getString("COLUMN_NAME")});
 			}
 		}
 		
