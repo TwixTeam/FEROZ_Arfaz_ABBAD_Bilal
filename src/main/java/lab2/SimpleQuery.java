@@ -16,13 +16,6 @@ public class SimpleQuery {
 	   	Statement stmt = null;
 
 	   	try{
-
-	   		Class.forName(JDBC_DRIVER);
-
-	    	log.info("Connecting to database : " + DB_URL + " as : " + USER);
-	      	conn = DriverManager.getConnection(DB_URL,USER,PASS);
-	      	log.info("Connection : SUCCESS !");
-
 	      	log.info("Creating statement...");
 
 	      	stmt = conn.createStatement();
