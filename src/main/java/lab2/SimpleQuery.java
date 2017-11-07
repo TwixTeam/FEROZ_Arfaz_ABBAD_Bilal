@@ -51,6 +51,8 @@ public class SimpleQuery {
 				conn.close();
 			} catch (SQLException e) {
 				log.error(e);
+			} catch (NullPointerException npe) {
+				log.error(npe);
 			}
 		}
 	}

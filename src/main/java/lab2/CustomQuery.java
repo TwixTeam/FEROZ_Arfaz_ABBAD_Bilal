@@ -40,7 +40,7 @@ public class CustomQuery {
 		}
 	}
 
-	public static void connectToDatabase(String url, String driver, String user, String pass) throws SQLException {
+	public static void connectToDatabase(String url, String driver, String user, String pass) throws SQLException, ClassNotFoundException {
 		Class.forName(driver);
 
 		String password = pass.equals(" ") ? "" : pass;
@@ -69,15 +69,15 @@ public class CustomQuery {
       	log.debug("Number of Result Columns : " + nbColumn);
 
 		for(int i=1; i<=nbColumn; i++) {
-			log.info(rsmd.getColumnName(i) + "\t");
+			System.out.print(rsmd.getColumnName(i) + "\t");
 		}
 
-		log.info("\n");
+		System.out.println();
 
       	while(rs.next()){
 
          	for(int j=1; j<=nbColumn; j++) {
-				log.info(rs.getString(j) + "\t");
+         		System.out.print(rs.getString(j) + "\t");
 			}
 
 			System.out.println();
