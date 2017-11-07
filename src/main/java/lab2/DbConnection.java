@@ -23,9 +23,12 @@ public class DbConnection {
 	public static Connection getInstance(String url, String driver, String user, String pass) {
 		
 		try{
+			log.info(user);
 			Class.forName(driver);
 
-			String password = pass.equals(" ") ? "" : pass;
+			String password = pass.equals(" ") || pass==null ? "" : pass;
+
+
 
 	    	log.info("Connecting to database : " + url + " as : " + user);
 	      	connection = DriverManager.getConnection(url,user,password);

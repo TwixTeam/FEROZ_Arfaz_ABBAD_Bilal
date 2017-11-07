@@ -59,11 +59,16 @@ public class GenerateScript {
 		List<String[]> columns = new ArrayList<>();
 
 		for(String currentTable : tables) {
-			rs = metadata.getTables(null, null, currentTable, null);
+			rs = metadata.getColumns(null, null, currentTable, null);
 
-			while(rs.next()) {
-				columns.add(new String[] {rs.getString("COLUMN_NAME"), rs.getString("COLUMN_NAME")});
-			}
+			while (rs.next()) {
+                System.out.println(rs.getString("COLUMN_NAME") + " "
+
+                        + rs.getString("TYPE_NAME") + " "
+
+                        + rs.getString("COLUMN_SIZE"));
+            }
+
 		}
 		
 

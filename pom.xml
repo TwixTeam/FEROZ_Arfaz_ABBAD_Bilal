@@ -66,6 +66,16 @@
 							<mainClass>lab2.CustomQuery</mainClass>
 						</configuration>
 					</execution>
+
+					<execution>
+						<id>generateDatabase</id>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>lab2.GenerateScript</mainClass>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 

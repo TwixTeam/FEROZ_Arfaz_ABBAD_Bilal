@@ -11,11 +11,7 @@ import java.util.Properties;
 public class SimpleQuery {
 
 	protected static Logger log = Logger.getLogger(SimpleQuery.class);
-	protected static Properties p = new Properties();
 	
-	static final String JDBC_DRIVER = p.getProperty("lab2.jdbc.driver");
-	static final String DB_URL = p.getProperty("lab2.db.url");
-
 	public static void main(String[] args) {
 
 		Connection conn = null;
@@ -34,7 +30,7 @@ public class SimpleQuery {
 	      	while(rs.next()){
 
 	         	String last = rs.getString("last_name");
-	         	log.info("Last name: " + last);
+	         	System.out.println("Last name: " + last);
 	      	}
 	      
 	      	log.info("End of the request...");
