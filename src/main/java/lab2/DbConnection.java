@@ -23,6 +23,8 @@ public class DbConnection {
 		try{
 			Class.forName(driver);
 
+			pass = pass.equals(" ") ? "" : pass;
+
 	    	log.info("Connecting to database : " + url + " as : " + user);
 	      	connection = DriverManager.getConnection(url,user,pass);
 	      	log.info("Connection : SUCCESS !");
