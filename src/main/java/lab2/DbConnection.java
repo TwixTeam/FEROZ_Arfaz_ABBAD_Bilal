@@ -1,6 +1,9 @@
 package lab2;
 
 import org.apache.log4j.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -16,20 +19,35 @@ public class DbConnection {
 
 	private DbConnection() {}
 
+	/**
+	 * Return Instance of the db
+	 */
 	public static Connection getInstance() {
-		return getInstance(p.getProperty("db.url"), p.getProperty("jdbc.driver"), p.getProperty("db.usersame"), p.getProperty("db.password"));
+		try {
+	        p.load(DbConnection.class.getResourceAsStream("/app.properties"));
+	    } catch (FileNotFoundException fnfe) {
+	        log.error(fnfe);
+	    } catch (IOException ioe) {
+	    	log.error(ioe);
+	    }
+		return getInstance(p.getProperty("lab2.db.url"), p.getProperty("lab2.jdbc.driver"), p.getProperty("lab2.db.username"), p.getProperty("lab2.db.password"));
 	}
-
+	
+	/**
+	 * Method to connect to the database
+	 * 
+	 * @param url URL of the database
+	 * @param driver Driver for the database
+	 * @param user Username to connect to the database
+	 * @param pass Password for the User
+	 * 
+	 */
 	public static Connection getInstance(String url, String driver, String user, String pass) {
 		
 		try{
-			log.info(user);
 			Class.forName(driver);
-
-			String password = pass.equals(" ") || pass==null ? "" : pass;
-
-
-
+			String password = pass.equals(" ") ? "" : pass;
+			
 	    	log.info("Connecting to database : " + url + " as : " + user);
 	      	connection = DriverManager.getConnection(url,user,password);
 	      	log.info("Connection : SUCCESS !");

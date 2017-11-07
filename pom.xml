@@ -17,7 +17,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
 		<db.url>jdbc:mysql://localhost/sakila</db.url>
-		<db.usersame>root</db.usersame>
+		<db.username>root</db.username>
 		<db.password></db.password>
 	</properties>
 
