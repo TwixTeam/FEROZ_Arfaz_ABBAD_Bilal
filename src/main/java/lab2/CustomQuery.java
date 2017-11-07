@@ -24,8 +24,7 @@ public class CustomQuery {
 			}
 
 			else {
-
-				connectToDatabase(args[0], args[1], args[2], args[3]);
+				connection = DbConnection.getInstance(args[0], args[1], args[2], args[3]);
 				executeRequest(args[4]);
 
 				displayResult();

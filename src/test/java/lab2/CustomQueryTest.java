@@ -31,7 +31,7 @@ public class CustomQueryTest extends TestCase {
 	public void testApp() {
 
 		CustomQuery.main(new String[] {"jdbc:mysql://localhost/sakila", "com.mysql.jdbc.Driver", "root", "", "Select id from actor"});
-
+		
 		CustomQuery.main(new String[] {"jdbc:mysql://localhost/sakila", "com.mysql.jdbc.Driver", "root", "", "Select actor_id from actor"});
 	}
 }

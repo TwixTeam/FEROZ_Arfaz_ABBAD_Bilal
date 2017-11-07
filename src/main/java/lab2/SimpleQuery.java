@@ -10,16 +10,9 @@ public class SimpleQuery {
 
 	protected static Logger log = Logger.getLogger(SimpleQuery.class);
 
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost/sakila";
-
-	//  Database credentials
-	static final String USER = "root";
-	static final String PASS = "";
-
 	public static void main(String[] args) {
 
-		Connection conn = null;
+		Connection conn = DbConnection.getInstance();
 	   	Statement stmt = null;
 
 	   	try{
