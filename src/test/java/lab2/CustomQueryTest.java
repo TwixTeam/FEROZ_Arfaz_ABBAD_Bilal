@@ -7,14 +7,14 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest extends TestCase {
+public class CustomQueryTest extends TestCase {
 	/**
 	 * Create the test case
 	 *
 	 * @param testName
 	 *            name of the test case
 	 */
-	public AppTest(String testName) {
+	public CustomQueryTest(String testName) {
 		super(testName);
 	}
 
@@ -22,14 +22,16 @@ public class AppTest extends TestCase {
 	 * @return the suite of tests being tested
 	 */
 	public static Test suite() {
-		System.out.println("COUCOU");
-		return new TestSuite(AppTest.class);
+		return new TestSuite(CustomQueryTest.class);
 	}
 
 	/**
 	 * Rigourous Test :-)
 	 */
 	public void testApp() {
-		assertTrue(true);
+
+		CustomQuery.main(new String[] {"jdbc:mysql://localhost/sakila", "com.mysql.jdbc.Driver", "root", "", "Select id from actor"});
+
+		CustomQuery.main(new String[] {"jdbc:mysql://localhost/sakila", "com.mysql.jdbc.Driver", "root", "", "Select actor_id from actor"});
 	}
 }

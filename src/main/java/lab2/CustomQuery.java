@@ -10,14 +10,9 @@ public class CustomQuery {
 
 	protected static Logger log = Logger.getLogger(CustomQuery.class);
 
-	private static String jdbc_driver = "";  
-	private static String db_url = "";
-
-	//  Database credentials
-	private static String user = "";
-	private static String pass = "";
-
-	private static String sql_request = "";
+	private static Connection connection = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
 
 	public static void main(String[] args) {
 		
@@ -25,55 +20,18 @@ public class CustomQuery {
 			if(args.length < 5) {
 				log.debug("Nb of arguments : " + args.length);
 				throw new Exception("Missing arguments \n"
-									+ "the right command is : mvn exec:java@customQuery \"url\" \"driver\" \"user\" \"password\"");
+									+ "the right command is : mvn exec:java@customQuery -Dexec.args=\" \'url\' \'driver\' \'user\' \'password\' \'request\' \" ");
 			}
 
 			else {
 
-				db_url = args[0].toString();
-				jdbc_driver = args[1].toString();
+				connectToDatabase(args[0], args[1], args[2], args[3]);
+				executeRequest(args[4]);
 
-				user = args[2].toString();
-				pass = args[3].toString();
-
-				sql_request = args[4].toString();
+				displayResult();
+				closeConnection();
 			}
-
-			Connection conn = null;
-		   	Statement stmt = null;
-
-	   		//Class.forName(jdbc_driver);
-
-	    	log.info("Connecting to database : " + db_url + " as : " + user);
-	      	conn = DriverManager.getConnection(db_url,user,pass);
-	      	log.info("Connection : SUCCESS !");
-
-	      	log.info("Creating statement...");
-
-	      	stmt = conn.createStatement();
-
-	      	log.debug("Executing statement: " + sql_request);
-	      	ResultSet rs = stmt.executeQuery(sql_request);
-
-	      	ResultSetMetaData rsmd = rs.getMetaData();
-	      	int nb_column = rsmd.getColumnCount();
-
- 			for(int i=0; i<nb_column; i++) {
- 				System.out.print(rsmd.getColumnName(i) + "\t");
- 			}
-
-	      	while(rs.next()){
-
-	         	for(int j=0; j<nb_column; j++) {
- 					System.out.print(rs.getString(j) + "\t");
- 				}
-	      	}
-	      
-	      	log.info("End of the request...");
-
-	      	rs.close();
-	      	stmt.close();
-	      	conn.close();
+	      	
 	   	} catch(SQLException se){
 	   		log.error("SQLException : " + se);
 
@@ -81,5 +39,58 @@ public class CustomQuery {
 	   		log.error("Exception : " + e);
 
 		}
+	}
+
+	public static void connectToDatabase(String url, String driver, String user, String pass) throws SQLException, Exception {
+		Class.forName(driver);
+
+		pass = pass.equals(" ") ? "" : pass;
+
+    	log.info("Connecting to database : " + url + " as : " + user);
+      	connection = DriverManager.getConnection(url,user,pass);
+
+      	log.info("Connection : SUCCESS !");
+
+	}
+
+
+	public static void executeRequest(String request) throws SQLException, Exception{
+		log.info("Creating statement...");
+      	stmt = connection.createStatement();
+
+      	log.debug("Executing statement: " + request);
+      	rs = stmt.executeQuery(request);
+	}
+
+
+	public static void displayResult() throws SQLException, Exception {
+		ResultSetMetaData rsmd = rs.getMetaData();
+      	int nb_column = rsmd.getColumnCount();
+
+      	log.debug("Number of Result Columns : " + nb_column);
+
+		for(int i=1; i<=nb_column; i++) {
+			System.out.print(rsmd.getColumnName(i) + "\t");
+		}
+
+		System.out.println("\n");
+
+      	while(rs.next()){
+
+         	for(int j=1; j<=nb_column; j++) {
+				System.out.print(rs.getString(j) + "\t");
+			}
+
+			System.out.println();
+      	}
+      
+      	log.info("End of the request...");
+	}
+
+
+	public static void closeConnection() throws SQLException, Exception {
+		rs.close();
+      	stmt.close();
+      	connection.close();
 	}
 }
