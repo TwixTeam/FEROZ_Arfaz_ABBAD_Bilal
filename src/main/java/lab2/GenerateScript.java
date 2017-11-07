@@ -3,6 +3,7 @@ package lab2;
 import org.apache.log4j.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /** 
  * Retrieve table infos
@@ -37,12 +38,12 @@ public class GenerateScript {
 		}
 	}
 
-	private static ArrayList<String> getTablesName() throws SQLException, Exception {
+	private static ArrayList<String> getTablesName() throws SQLException {
 		ResultSet rs = null;
 		ArrayList<String> tables;
 
 		rs = metadata.getTables(null, null, null, new String[] {"TABLE"});
-		tables = new ArrayList();
+		tables = new ArrayList<>();
 
 		while(rs.next()) {
 			tables.add(rs.getString("TABLE_NAME"));
@@ -53,9 +54,9 @@ public class GenerateScript {
 		return tables;
 	}
 
-	private static ArrayList<String> getColumnsName(ArrayList<String> tables) throws SQLException, Exception {
+	private static ArrayList<String> getColumnsName(ArrayList<String> tables) throws SQLException {
 		ResultSet rs = null;
-		ArrayList<String[]> columns = new ArrayList();
+		List<String[]> columns = new ArrayList<>();
 
 		for(String currentTable : tables) {
 			rs = metadata.getTables(null, null, currentTable, null);

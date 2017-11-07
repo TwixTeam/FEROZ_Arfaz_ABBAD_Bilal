@@ -18,17 +18,18 @@ public class SimpleQuery {
 
 	public static void main(String[] args) {
 
-		Connection conn = DbConnection.getInstance();
+		Connection conn = null;
 	   	Statement stmt = null;
-
+	   	ResultSet rs = null;
 	   	try{
+	   		conn = DbConnection.getInstance();
 	      	log.info("Creating statement...");
 
 	      	stmt = conn.createStatement();
 	      	String sql = "SELECT last_name FROM actor";
 
 	      	log.debug("Executing statement: " + sql);
-	      	ResultSet rs = stmt.executeQuery(sql);
+	      	rs = stmt.executeQuery(sql);
 
 	      	while(rs.next()){
 
@@ -37,16 +38,20 @@ public class SimpleQuery {
 	      	}
 	      
 	      	log.info("End of the request...");
-
-	      	rs.close();
-	      	stmt.close();
-	      	conn.close();
 	   	} catch(SQLException se){
 	   		log.error("SQLException : " + se);
 
 	   	} catch(Exception e){
 	   		log.error("Exception : " + e);
 
+		} finally {
+	      	try {
+	      		rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				log.error(e);
+			}
 		}
 	}
 }

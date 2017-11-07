@@ -40,20 +40,20 @@ public class CustomQuery {
 		}
 	}
 
-	public static void connectToDatabase(String url, String driver, String user, String pass) throws SQLException, Exception {
+	public static void connectToDatabase(String url, String driver, String user, String pass) throws SQLException {
 		Class.forName(driver);
 
-		pass = pass.equals(" ") ? "" : pass;
+		String password = pass.equals(" ") ? "" : pass;
 
     	log.info("Connecting to database : " + url + " as : " + user);
-      	connection = DriverManager.getConnection(url,user,pass);
+      	connection = DriverManager.getConnection(url,user,password);
 
       	log.info("Connection : SUCCESS !");
 
 	}
 
 
-	public static void executeRequest(String request) throws SQLException, Exception{
+	public static void executeRequest(String request) throws SQLException {
 		log.info("Creating statement...");
       	stmt = connection.createStatement();
 
@@ -62,22 +62,22 @@ public class CustomQuery {
 	}
 
 
-	public static void displayResult() throws SQLException, Exception {
+	public static void displayResult() throws SQLException {
 		ResultSetMetaData rsmd = rs.getMetaData();
-      	int nb_column = rsmd.getColumnCount();
+      	int nbColumn = rsmd.getColumnCount();
 
-      	log.debug("Number of Result Columns : " + nb_column);
+      	log.debug("Number of Result Columns : " + nbColumn);
 
-		for(int i=1; i<=nb_column; i++) {
-			System.out.print(rsmd.getColumnName(i) + "\t");
+		for(int i=1; i<=nbColumn; i++) {
+			log.info(rsmd.getColumnName(i) + "\t");
 		}
 
-		System.out.println("\n");
+		log.info("\n");
 
       	while(rs.next()){
 
-         	for(int j=1; j<=nb_column; j++) {
-				System.out.print(rs.getString(j) + "\t");
+         	for(int j=1; j<=nbColumn; j++) {
+				log.info(rs.getString(j) + "\t");
 			}
 
 			System.out.println();
@@ -87,7 +87,7 @@ public class CustomQuery {
 	}
 
 
-	public static void closeConnection() throws SQLException, Exception {
+	public static void closeConnection() throws SQLException {
 		rs.close();
       	stmt.close();
       	connection.close();
