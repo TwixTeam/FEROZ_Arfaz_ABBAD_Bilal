@@ -39,7 +39,7 @@ public class GenerateScript {
 
 	private static ArrayList<String> getTablesName() throws SQLException, Exception {
 		ResultSet rs = null;
-		ArrayList tables;
+		ArrayList<String> tables;
 
 		rs = metadata.getTables(null, null, null, new String[] {"TABLE"});
 		tables = new ArrayList();
@@ -55,14 +55,13 @@ public class GenerateScript {
 
 	private static ArrayList<String> getColumnsName(ArrayList<String> tables) throws SQLException, Exception {
 		ResultSet rs = null;
-		ArrayList columns;
+		ArrayList<String[]> columns;
 
 		for(String currentTable : tables) {
 			rs = metadata.getTables(null, null, currentTable, null);
-			tables = new ArrayList();
 
 			while(rs.next()) {
-				tables.add(rs.getString("TABLE_NAME"));
+				tables.add(new String[] {rs.getString("COLUMN_NAME"), rs.getString("COLUMN_NAME")});
 			}
 		}
 		
