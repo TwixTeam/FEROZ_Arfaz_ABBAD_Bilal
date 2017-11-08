@@ -20,7 +20,7 @@ public class DbConnection {
 	private DbConnection() {}
 
 	/**
-	 * Return Instance of the db
+	 * Connect to the default database
 	 */
 	public static Connection getInstance() {
 		try {
@@ -44,6 +44,8 @@ public class DbConnection {
 	 */
 	public static Connection getInstance(String url, String driver, String user, String pass) {
 		
+		connection = null;
+
 		try{
 			Class.forName(driver);
 			String password = pass.equals(" ") ? "" : pass;
@@ -54,6 +56,9 @@ public class DbConnection {
 		
 		} catch(SQLException se) {
 			log.error("SQLException : " + se);
+
+		} catch(ClassNotFoundException cnfe) {
+			log.error("ClassNotFoundException : " + cnfe);
 
 		} catch(Exception e) {
 			log.error("Exception : " + e);
