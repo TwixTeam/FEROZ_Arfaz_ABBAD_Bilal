@@ -17,6 +17,7 @@ public class SimpleQuery {
 		Connection conn = null;
 	   	Statement stmt = null;
 	   	ResultSet rs = null;
+	   	
 	   	try{
 	   		conn = DbConnection.getInstance();
 	      	log.info("Creating statement...");

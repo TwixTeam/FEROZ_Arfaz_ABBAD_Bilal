@@ -6,10 +6,14 @@ import junit.framework.TestSuite;
 
 import java.sql.Connection;
 
+import org.apache.log4j.Logger;
+
 /**
- * Unit test for simple App.
+ * Unit test for DbConnection class
  */
 public class DbConnectionTest extends TestCase {
+
+	protected static Logger log = Logger.getLogger(SimpleQuery.class);
 	/**
 	 * Create the test case
 	 *
@@ -27,14 +31,12 @@ public class DbConnectionTest extends TestCase {
 		return new TestSuite(DbConnectionTest.class);
 	}
 
-	/**
-	 * Rigourous Test :-)
-	 */
 	public void testApp() {
-		Connection c1 = DbConnection.getInstance();
-		assertTrue(c1 != null);
-
-		Connection c2 = DbConnection.getInstance("jdbc:mysql://invalid/url", "invalid.driver", "invalidUser", "invalidPassword");
-		assertTrue(c2 == null);
+		//Test connection success
+		assertTrue( DbConnection.getInstance() != null);
+		log.info("connection success OK");
+		//Test connection fail
+		assertTrue(DbConnection.getInstance("jdbc:mysql://invalid/url", "invalid.driver", "invalidUser", "invalidPassword") == null);
+		log.info("connection fail OK");
 	}
 }

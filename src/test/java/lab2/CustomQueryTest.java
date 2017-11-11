@@ -25,9 +25,6 @@ public class CustomQueryTest extends TestCase {
 		return new TestSuite(CustomQueryTest.class);
 	}
 
-	/**
-	 * Rigourous Test :-)
-	 */
 	public void testApp() {
 
 		CustomQuery.main(new String[] {"jdbc:mysql://localhost/sakila", "com.mysql.jdbc.Driver", "root", "", "Select id from actor"});
