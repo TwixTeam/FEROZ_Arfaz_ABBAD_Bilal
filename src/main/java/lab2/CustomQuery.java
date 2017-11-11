@@ -40,19 +40,6 @@ public class CustomQuery {
 		}
 	}
 
-	public static void connectToDatabase(String url, String driver, String user, String pass) throws SQLException, ClassNotFoundException {
-		Class.forName(driver);
-
-		String password = pass.equals(" ") ? "" : pass;
-
-    	log.info("Connecting to database : " + url + " as : " + user);
-      	connection = DriverManager.getConnection(url,user,password);
-
-      	log.info("Connection : SUCCESS !");
-
-	}
-
-
 	public static void executeRequest(String request) throws SQLException {
 		log.info("Creating statement...");
       	stmt = connection.createStatement();
