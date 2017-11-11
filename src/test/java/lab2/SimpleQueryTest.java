@@ -9,6 +9,9 @@ import org.apache.log4j.Logger;
 
 import junit.framework.TestCase;
 
+/**
+ * Unit test for SimpleQuery class
+ */
 public class SimpleQueryTest extends TestCase {
 	protected static Logger log = Logger.getLogger(SimpleQuery.class);
 	Connection conn = null;
