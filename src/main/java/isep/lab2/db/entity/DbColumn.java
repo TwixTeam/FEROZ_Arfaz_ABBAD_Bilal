@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 
+/**
  * db column
  */
 public class DbColumn {
@@ -19,10 +19,55 @@ public class DbColumn {
 	private boolean isNullable;
 	private boolean isPrimary;
 	private boolean isForeign;
-	public static enum SQLTypes {INT, VARCHAR, TEXT, DATE};
-	public DbColumn(){}
 
-	public DbColumn(String type, String name, int length, String defaultVal, boolean autoIncr, boolean uniq, boolean nullable, boolean prim, boolean foreign){
+	public enum SQLTypes {
+		TINYINT,
+		SMALLINT,
+		MEDIUMINT,
+		INT, 
+		BIGINT, 
+		DECIMAL, 
+		FLOAT, 
+		DOUBLE, 
+		REAL, 
+		BIT, 
+		BOOLEAN, 
+		SERIAL, 
+		DATE, 
+		DATETIME, 
+		TIMESTAMP, 
+		TIME, 
+		YEAR, 
+		CHAR, 
+		VARCHAR, 
+		TINYTEXT, 
+		TEXT, 
+		MEDIUMTEXT, 
+		LONGTEXT, 
+		BINARY, 
+		VARBINARY, 
+		TINYBLOP, 
+		MEDIUMBLOP, 
+		BLOP, 
+		LONGBLOP, 
+		ENUM, 
+		SET, 
+		GEOMETRY, 
+		POINT, 
+		LINESTRING, 
+		POLYGON, 
+		MULTIPOINT, 
+		MULTILINESTRING, 
+		MULTIPOLYGON, 
+		GEOMETRYCOLLECTION, 
+		JSON
+	};
+
+	public DbColumn() {
+	}
+
+	public DbColumn(String type, String name, int length, String defaultVal, boolean autoIncr, boolean uniq,
+			boolean nullable, boolean prim, boolean foreign) {
 		this.type = type;
 		this.name = name;
 		this.length = length;
