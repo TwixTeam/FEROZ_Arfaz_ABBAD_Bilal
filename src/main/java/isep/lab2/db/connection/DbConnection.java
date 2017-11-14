@@ -1,4 +1,4 @@
-package lab2.db.connection;
+package isep.lab2.db.connection;
 
 import org.apache.log4j.*;
 

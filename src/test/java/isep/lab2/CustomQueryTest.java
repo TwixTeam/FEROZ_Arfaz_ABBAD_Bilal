@@ -1,9 +1,9 @@
-package lab2;
+package isep.lab2;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import lab2.db.query.CustomQuery;
+import isep.lab2.db.query.CustomQuery;
 
 /**
  * Unit test for CustomQuery class

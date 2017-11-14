@@ -1,4 +1,4 @@
-package lab2.db.entity;
+package isep.lab2.db.entity;
 
 import org.apache.log4j.*;
 import java.sql.*;

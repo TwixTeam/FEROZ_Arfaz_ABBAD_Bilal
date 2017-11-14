@@ -1,8 +1,8 @@
-package lab2.databaseScript;
+package isep.lab2.db.script;
 
-import lab2.db.connection.DbConnection;
-import lab2.db.entity.DbColumn;
-import lab2.db.entity.DbTable;
+import isep.lab2.db.connection.DbConnection;
+import isep.lab2.db.entity.DbColumn;
+import isep.lab2.db.entity.DbTable;
 import org.apache.log4j.*;
 
 import java.io.FileNotFoundException;

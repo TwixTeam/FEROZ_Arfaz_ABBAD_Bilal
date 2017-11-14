@@ -1,11 +1,11 @@
-package lab2;
+package isep.lab2;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import lab2.db.connection.DbConnection;
-import lab2.db.query.SimpleQuery;
+import isep.lab2.db.connection.DbConnection;
+import isep.lab2.db.query.SimpleQuery;
 import org.apache.log4j.Logger;
 
 /**

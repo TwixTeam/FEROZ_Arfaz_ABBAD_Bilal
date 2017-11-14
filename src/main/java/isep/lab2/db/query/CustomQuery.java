@@ -1,6 +1,6 @@
-package lab2.db.query;
+package isep.lab2.db.query;
 
-import lab2.db.connection.DbConnection;
+import isep.lab2.db.connection.DbConnection;
 import org.apache.log4j.*;
 import java.sql.*;
 

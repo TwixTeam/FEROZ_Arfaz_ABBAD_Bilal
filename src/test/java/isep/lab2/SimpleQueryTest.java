@@ -1,12 +1,12 @@
-package lab2;
+package isep.lab2;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import lab2.db.connection.DbConnection;
-import lab2.db.query.SimpleQuery;
+import isep.lab2.db.connection.DbConnection;
+import isep.lab2.db.query.SimpleQuery;
 import org.apache.log4j.Logger;
 
 import junit.framework.TestCase;

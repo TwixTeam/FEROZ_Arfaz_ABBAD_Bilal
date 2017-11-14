@@ -1,6 +1,6 @@
-package lab2.db.entity;
+package isep.lab2.db.entity;
 
-import lab2.db.entity.DbColumn;
+import isep.lab2.db.entity.DbColumn;
 
 import java.util.ArrayList;
 
