@@ -7,9 +7,8 @@ public class DocumentColumn extends DbColumn {
 	public DocumentColumn() {
 	}
 
-	public DocumentColumn(String type, String name, int length, String defaultVal, boolean autoIncr, boolean uniq,
+	public DocumentColumn(String type, String name, String defaultVal, boolean uniq,
 			boolean nullable, boolean prim, boolean foreign) {
-		super(type, name, length, defaultVal, autoIncr, uniq, nullable, prim, foreign);
+		super(type, name, defaultVal, uniq, nullable, prim, foreign);
 	}
-
 }
