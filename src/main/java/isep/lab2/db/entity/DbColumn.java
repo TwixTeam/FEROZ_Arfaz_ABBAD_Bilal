@@ -19,7 +19,7 @@ public class DbColumn {
 	private boolean isNullable;
 	private boolean isPrimary;
 	private boolean isForeign;
-
+	public static enum SQLTypes {INT, VARCHAR, TEXT, DATE};
 	public DbColumn(){}
 
 	public DbColumn(String type, String name, int length, String defaultVal, boolean autoIncr, boolean uniq, boolean nullable, boolean prim, boolean foreign){
