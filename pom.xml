@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>lab2</groupId>
+	<groupId>isep.lab2</groupId>
 	<artifactId>jdbc</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
@@ -53,7 +53,7 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
-							<mainClass>lab2.db.query.SimpleQuery</mainClass>
+							<mainClass>isep.lab2.db.query.SimpleQuery</mainClass>
 						</configuration>
 					</execution>
 
@@ -63,7 +63,7 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
-							<mainClass>lab2.db.query.CustomQuery</mainClass>
+							<mainClass>isep.lab2.db.query.CustomQuery</mainClass>
 						</configuration>
 					</execution>
 
@@ -73,7 +73,7 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
-							<mainClass>lab2.databaseScript.GenerateScript</mainClass>
+							<mainClass>isep.lab2.databaseScript.GenerateScript</mainClass>
 						</configuration>
 					</execution>
 				</executions>
