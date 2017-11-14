@@ -1,4 +1,4 @@
 package lab2.db.factory;
 
-public abstract class NumericColumnFactory {
+public abstract class NumericColumnFactory extends ColumnFactory {
 }
