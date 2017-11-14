@@ -4,8 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import java.sql.Connection;
-
+import lab2.db.connection.DbConnection;
+import lab2.db.query.SimpleQuery;
 import org.apache.log4j.Logger;
 
 /**

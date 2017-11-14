@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import lab2.db.connection.DbConnection;
+import lab2.db.query.SimpleQuery;
 import org.apache.log4j.Logger;
 
 import junit.framework.TestCase;

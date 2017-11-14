@@ -1,9 +1,8 @@
-package lab2.databaseScript;
+package lab2.db.entity;
 
-import org.apache.log4j.*;
-import java.sql.*;
+import lab2.db.entity.DbColumn;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /** 
  * db table

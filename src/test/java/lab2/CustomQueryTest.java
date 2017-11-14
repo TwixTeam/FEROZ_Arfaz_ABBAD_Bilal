@@ -3,6 +3,7 @@ package lab2;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import lab2.db.query.CustomQuery;
 
 /**
  * Unit test for CustomQuery class

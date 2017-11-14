@@ -1,6 +1,8 @@
 package lab2.databaseScript;
 
-import lab2.DbConnection;
+import lab2.db.connection.DbConnection;
+import lab2.db.entity.DbColumn;
+import lab2.db.entity.DbTable;
 import org.apache.log4j.*;
 
 import java.io.FileNotFoundException;

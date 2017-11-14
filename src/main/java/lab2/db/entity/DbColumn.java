@@ -1,4 +1,4 @@
-package lab2.databaseScript;
+package lab2.db.entity;
 
 import org.apache.log4j.*;
 import java.sql.*;
@@ -26,7 +26,7 @@ public class DbColumn {
 		this.type = type;
 		this.name = name;
 		this.length = length;
-		this. defaultValue = defaultVal;
+		this.defaultValue = defaultVal;
 		this.isAutoIncrement = autoIncr;
 		this.isUnique = uniq;
 		this.isNullable = nullable;

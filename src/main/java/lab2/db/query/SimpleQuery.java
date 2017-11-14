@@ -1,9 +1,9 @@
-package lab2;
+package lab2.db.query;
 
+import lab2.db.connection.DbConnection;
 import org.apache.log4j.*;
 
 import java.sql.*;
-import java.util.Properties;
 
 /** 
  * JDBC Request

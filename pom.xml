@@ -53,7 +53,7 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
-							<mainClass>lab2.SimpleQuery</mainClass>
+							<mainClass>lab2.db.query.SimpleQuery</mainClass>
 						</configuration>
 					</execution>
 
@@ -63,7 +63,7 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
-							<mainClass>lab2.CustomQuery</mainClass>
+							<mainClass>lab2.db.query.CustomQuery</mainClass>
 						</configuration>
 					</execution>
 
