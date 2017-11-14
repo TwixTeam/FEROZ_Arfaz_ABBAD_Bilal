@@ -1,4 +1,4 @@
 package isep.lab2.db.factory;
 
-public abstract class ObjectColumnFactory extends ColumnFactory{
+public class ObjectColumnFactory extends ColumnFactory{
 }
