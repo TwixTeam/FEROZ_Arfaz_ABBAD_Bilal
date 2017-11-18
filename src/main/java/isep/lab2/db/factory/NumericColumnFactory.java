@@ -1,10 +1,11 @@
 package isep.lab2.db.factory;
 
-import isep.lab2.db.entity.DbColumn;
+
+import java.sql.ResultSet;
 
 public class NumericColumnFactory extends ColumnFactory {
 
-    public static DbColumn createColumn(String type) {
-        super(type);
+    public static void createColumn(ResultSet rs) {
+
     }
 }
