@@ -11,14 +11,16 @@ import java.sql.SQLException;
 
 public abstract class ColumnFactory {
 
-    protected static Logger log = Logger.getLogger(ColumnFactory.class);
+    private static Logger log = Logger.getLogger(ColumnFactory.class);
 
 
     public static DbColumn createColumn(DbTable table, ResultSet colInfo) {
 
-        DbColumn.SQLTypes type = null;
-        try {
+        DbColumn.SQLTypes type;
+        DbColumn currentColumn = null;
 
+
+        try {
             type = DbColumn.SQLTypes.valueOf(colInfo.getString("COLUMN_TYPE").split(" ")[0]);
 
             String colName = colInfo.getString("COLUMN_NAME");
@@ -40,10 +42,11 @@ public abstract class ColumnFactory {
                 case BIT:
                 case BOOLEAN:
                 case SERIAL:
+
                     boolean auto_incr = colInfo.getString("IS_AUTOINCREMENT").equals("YES");
 
-                    if(rs.getString("COLUMN_SIZE") != null) {
-                        c.setLength(Integer.parseInt(rs.getString("COLUMN_SIZE")));
+                    if(colInfo.getString("COLUMN_SIZE") != null) {
+                        int length = (Integer.parseInt(colInfo.getString("COLUMN_SIZE")));
                     }
 
                 // Temporal
@@ -53,6 +56,8 @@ public abstract class ColumnFactory {
                 case TIME:
                 case YEAR:
 
+
+
                 //Text
                 case CHAR:
                 case VARCHAR:
@@ -60,6 +65,7 @@ public abstract class ColumnFactory {
                 case MEDIUMTEXT:
                 case LONGTEXT:
                 case BINARY:
+
 
                 //Document
                 case VARBINARY:
@@ -69,9 +75,11 @@ public abstract class ColumnFactory {
                 case LONGBLOP:
                 case TEXT:
 
+
                 //List
                 case ENUM:
                 case SET:
+
 
                 //Spatial
                 case GEOMETRY:
@@ -83,17 +91,20 @@ public abstract class ColumnFactory {
                 case MULTIPOLYGON:
                 case GEOMETRYCOLLECTION:
                 case JSON:
+
+                default:
+                    log.debug("Unknown SQL Type : " + type.toString());
             }
+
+
 
         } catch (SQLException se) {
             log.error(se);
         } catch (Exception e) {
             log.error(e);
         }
-    }
 
-    public static DbColumn createColumn(DbTable table, ResultSet colInfo) {
-
+        return currentColumn;
     }
 
 }
