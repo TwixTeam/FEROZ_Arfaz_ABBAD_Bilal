@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 
 public class TextColumnFactory extends ColumnFactory{
 
-    public static DbColumn createColumn(int intType, String type, String name, String defaultVal,
-                                        boolean nullable, int length) {
+    public static DbColumn createColumn(String tableName, int intType, String type, String name, String defaultVal,
+                                        boolean nullable, String length) {
 
-        DbColumn column = new TextColumn(intType, type, name, defaultVal, nullable, length);
+        DbColumn column = new TextColumn(tableName, intType, type, name, defaultVal, nullable, length);
 
         return column;
     }

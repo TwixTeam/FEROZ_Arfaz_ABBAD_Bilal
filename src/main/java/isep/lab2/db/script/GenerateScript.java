@@ -75,6 +75,7 @@ public class GenerateScript {
 
 		while (rs.next()) {
 			DbColumn c = ColumnFactory.createColumn(table, rs);
+			table.getColumns().add(c);
 		}
 
 		log.debug("Nb Colums found : " + table.getColumns().size());

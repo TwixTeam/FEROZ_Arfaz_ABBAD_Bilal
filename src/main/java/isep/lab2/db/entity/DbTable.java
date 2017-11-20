@@ -44,7 +44,7 @@ public class DbTable {
 			script += currentColumn.toSQL();
 		}
 
-		script += "\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;\n\n";
+		script += ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";
 
 		return script;
 	}

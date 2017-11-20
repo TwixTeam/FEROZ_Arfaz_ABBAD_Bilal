@@ -5,6 +5,7 @@ package isep.lab2.db.entity;
  */
 public abstract class DbColumn {
 
+	private String tableName;
 	private String type;
 	private int intType;
 	private String name;
@@ -15,8 +16,9 @@ public abstract class DbColumn {
 	public DbColumn() {
 	}
 
-	public DbColumn(int intType, String type, String name, String defaultVal,
+	public DbColumn(String tableName, int intType, String type, String name, String defaultVal,
 			boolean nullable) {
+		this.tableName = tableName;
 		this.intType = intType;
 		this.type = type;
 		this.name = name;
@@ -68,7 +70,7 @@ public abstract class DbColumn {
 		String nullable = this.isNullable() ? "" : " NOT NULL";
 		String defaultVal = this.getDefaultValue() != null ? " DEFAULT " + this.getDefaultValue() : "";
 
-		return ("'" + this.getName() + "' " + this.getType() + nullable + defaultVal + ",\n");
+		return ("\t'" + this.getName() + "' " + this.getType() + nullable + defaultVal + ",\n");
 	}
 
 }

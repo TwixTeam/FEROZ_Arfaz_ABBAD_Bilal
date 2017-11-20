@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 
 public class ListColumnFactory extends ColumnFactory{
 
-    public static DbColumn createColumn(int intType, String type, String name, String defaultVal, boolean nullable) {
+    public static DbColumn createColumn(String tableName, int intType, String type, String name, String defaultVal, boolean nullable) {
 
-        DbColumn column = new ListColumn(intType, type, name, defaultVal, nullable);
+        DbColumn column = new ListColumn(tableName, intType, type, name, defaultVal, nullable);
 
         return column;
     }

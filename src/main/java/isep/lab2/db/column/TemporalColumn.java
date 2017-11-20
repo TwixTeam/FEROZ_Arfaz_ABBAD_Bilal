@@ -7,8 +7,8 @@ public class TemporalColumn extends DbColumn {
 	public TemporalColumn() {
 	}
 
-	public TemporalColumn(int intType, String type, String name, String defaultVal, boolean nullable) {
-		super(intType, type, name, defaultVal, nullable);
+	public TemporalColumn(String tableName, int intType, String type, String name, String defaultVal, boolean nullable) {
+		super(tableName, intType, type, name, defaultVal, nullable);
 	}
 
 	public String toSQL() {

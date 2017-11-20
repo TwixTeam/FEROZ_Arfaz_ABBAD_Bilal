@@ -3,29 +3,32 @@ package isep.lab2.db.column;
 import isep.lab2.db.entity.DbColumn;
 
 public class NumericColumn extends DbColumn {
-	private int length;
+	private String length;
+	private boolean unsigned;
 
 	public NumericColumn() {
 	}
 
-	public NumericColumn(int intType, String type, String name,  String defaultVal, boolean nullable, int length) {
+	public NumericColumn(String tableName, int intType, String type, String name, String defaultVal, boolean nullable, String length, boolean isUnsigned) {
 
-		super(intType, type, name, defaultVal, nullable);
+		super(tableName, intType, type, name, defaultVal, nullable);
 		this.length = length;
+		this.unsigned = isUnsigned;
 	}
 	
-	public int getLength() {
+	public String getLength() {
 		return length;
 	}
 
-	public void setLength(int length) {
+	public void setLength(String length) {
 		this.length = length;
 	}
 
 	public String toSQL() {
 		String nullable = this.isNullable() ? "" : " NOT NULL";
 		String defaultVal = this.getDefaultValue() != null ? " DEFAULT " + this.getDefaultValue() : "";
+		String unsigned = this.unsigned ? " UNSIGNED" : "";
 
-		return ("'" + this.getName() + "' " + this.getType() + "("+ this.getLength() +")" + nullable + defaultVal + ",\n");
+		return ("\t'" + this.getName() + "' " + this.getType() + "("+ this.getLength() +")" + unsigned + nullable + defaultVal + ",\n");
 	}
 }

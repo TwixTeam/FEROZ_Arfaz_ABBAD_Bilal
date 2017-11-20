@@ -6,10 +6,10 @@ import isep.lab2.db.entity.DbColumn;
 
 public class TemporalColumnFactory extends ColumnFactory {
 
-    public static DbColumn createColumn(int intType, String type, String name, String defaultVal,
+    public static DbColumn createColumn(String tableName, int intType, String type, String name, String defaultVal,
                                         boolean nullable) {
 
-        DbColumn column = new TemporalColumn(intType, type, name, defaultVal, nullable);
+        DbColumn column = new TemporalColumn(tableName, intType, type, name, defaultVal, nullable);
 
         return column;
     }

@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 
 public class DocumentColumnFactory extends ColumnFactory{
 
-    public static DbColumn createColumn(int intType, String type, String name, String defaultVal, boolean nullable) {
-        DbColumn column = new DocumentColumn(intType, type, name, defaultVal, nullable);
+    public static DbColumn createColumn(String tableName, int intType, String type, String name, String defaultVal, boolean nullable) {
+        DbColumn column = new DocumentColumn(tableName, intType, type, name, defaultVal, nullable);
 
         return column;
     }
