@@ -1,6 +1,7 @@
 package isep.lab2.db.entity;
 
 import isep.lab2.db.entity.DbColumn;
+import isep.lab2.db.key.DbKey;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public class DbTable {
 
 	private String name;
 	private ArrayList<DbColumn> columns;
-	private
+	private ArrayList<DbKey> keys;
 
 	public DbTable() {
 		this.columns = new ArrayList<>();
@@ -36,6 +37,14 @@ public class DbTable {
 
 	public void setColumns(ArrayList<DbColumn> columns) {
 		this.columns = columns;
+	}
+
+	public ArrayList<DbKey> getKeys() {
+		return keys;
+	}
+
+	public void setKeys(ArrayList<DbKey> keys) {
+		this.keys = keys;
 	}
 
 	public String toSQL() {
