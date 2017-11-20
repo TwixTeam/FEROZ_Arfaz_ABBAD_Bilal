@@ -3,7 +3,7 @@ package isep.lab2.db.entity;
 /**
  * db column
  */
-public class DbColumn {
+public abstract class DbColumn {
 
 	private String type;
 	private int intType;

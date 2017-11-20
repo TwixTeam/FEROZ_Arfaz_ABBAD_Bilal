@@ -3,6 +3,7 @@ package isep.lab2.db.script;
 import isep.lab2.db.connection.DbConnection;
 import isep.lab2.db.entity.DbColumn;
 import isep.lab2.db.entity.DbTable;
+import isep.lab2.db.factory.ColumnFactory;
 import org.apache.log4j.*;
 
 import java.io.FileNotFoundException;
@@ -29,6 +30,7 @@ public class GenerateScript {
 	      	log.info("Getting MetaData...");
 	      	metadata = connection.getMetaData();
 
+
 	      	ArrayList<DbTable> tables = getTablesName();
 
 			getTableColumns(tables);
@@ -54,42 +56,29 @@ public class GenerateScript {
 		tables = new ArrayList<>();
 
 		while(rs.next()) {
-			tables.add(new DbTable(rs.getString("TABLE_NAME")));
+			DbTable currentTable = new DbTable(rs.getString("TABLE_NAME"));
+			getTableColumns(currentTable);
+
+			tables.add(currentTable);
 		}
 
 		log.debug("Nb Tables found : " + tables.size());
+
 		rs.close();
 		return tables;
 	}
-	
 
-	private static void getTableColumns(ArrayList<DbTable> tables) throws SQLException {
-		ResultSet rs = null;
-		ArrayList<DbColumn> columns = new ArrayList<>();
 
-		for(DbTable currentTable : tables) {
-			rs = metadata.getColumns(null, null, currentTable.getName(), null);
+	private static void getTableColumns(DbTable table) throws SQLException {
+		ResultSet rs;
 
-			while (rs.next()) {
-				DbColumn c = new DbColumn();
-				c.setType(rs.getString("TYPE_NAME"));
-				c.setName(rs.getString("COLUMN_NAME"));
+		rs = metadata.getColumns(null, null, table.getName(), null);
 
-				if(rs.getString("COLUMN_SIZE") != null) {
-					c.setLength(Integer.parseInt(rs.getString("COLUMN_SIZE")));
-				}
-
-				c.setDefaultValue(rs.getString("COLUMN_DEF"));
-				c.setAutoIncrement(rs.getString("IS_AUTOINCREMENT").equals("YES"));
-				c.setNullable(rs.getString("IS_NULLABLE").equals("YES"));
-
-				currentTable.getColumns().add(c);
-				columns.add(c);
-			}
+		while (rs.next()) {
+			DbColumn c = ColumnFactory.createColumn(table, rs);
 		}
-		
 
-		log.debug("Nb Colums found : " + columns.size());
+		log.debug("Nb Colums found : " + table.getColumns().size());
 
 		if (rs != null) {
 			rs.close();
