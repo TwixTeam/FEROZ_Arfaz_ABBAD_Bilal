@@ -37,13 +37,15 @@ public class DbTable {
 		this.columns = columns;
 	}
 
-	public void toSQL() {
+	public String toSQL() {
 		String script = "CREATE TABLE '" + this.name + "' (\n";
 
 		for(DbColumn currentColumn : this.getColumns()) {
 			script += currentColumn.toSQL();
 		}
 
-		script += "\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		script += "\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;\n\n";
+
+		return script;
 	}
 }

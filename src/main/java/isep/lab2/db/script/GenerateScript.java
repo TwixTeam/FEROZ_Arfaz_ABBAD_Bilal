@@ -85,27 +85,14 @@ public class GenerateScript {
 	}
 
 	private static void generateDbScript(ArrayList<DbTable> tables) {
-			/*PrintWriter writer = null;
+			PrintWriter writer = null;
 
 			try {
 				writer = new PrintWriter("generatedDbScript.sql", "UTF-8");
 				for (DbTable table : tables) {
 
-					writer.println("CREATE TABLE '" + table.getName() + "' (");
+					writer.println(table.toSQL());
 
-					for (DbColumn column : table.getColumns()) {
-						String autoIncr = column.isAutoIncrement() ? "AUTO_INCREMENT" : "";
-						String unsigned = column.getType().split(" ").length > 1 ? "UNSIGNED" : "";
-						String nullable = column.isNullable() ? "" : "NOT NULL";
-						String defaultVal = column.getDefaultValue() == null ? "" :  "DEFAULT " +  column.getDefaultValue();
-
-						writer.println("'" + column.getName() + "' " + column.getType().split(" ")[0]
-								+ "(" + column.getLength() + ") " + unsigned + " " + nullable + " " + defaultVal + " "
-								+ autoIncr
-						);
-					}
-
-					writer.println(");\n");
 				}
 
 				log.info("Le fichier generatedDbScript.sql a été créé");
@@ -116,6 +103,6 @@ public class GenerateScript {
 				if (writer != null) {
 					writer.close();
 				}
-			}*/
+			}
 	}
 }

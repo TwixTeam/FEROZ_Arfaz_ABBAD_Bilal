@@ -24,10 +24,12 @@ public abstract class ColumnFactory {
 
         try {
             typeNumber = colInfo.getInt("DATA_TYPE");
-            typeName = colInfo.getString("COLUMN_TYPE").split(" ")[0];
+            log.debug(typeNumber);
+            typeName = colInfo.getString("TYPE_NAME").split(" ")[0];
+            log.info(typeName);
 
             String colName = colInfo.getString("COLUMN_NAME");
-            String defaulVal = colInfo.getString("COLUMN_DEF");
+            String defaultVal = colInfo.getString("COLUMN_DEF");
             boolean nullable = colInfo.getString("IS_NULLABLE").equals("YES");
 
             if(typeName.toUpperCase().equals("ENUM") || typeName.toUpperCase().equals("SET")) {
@@ -51,7 +53,7 @@ public abstract class ColumnFactory {
                     if(colInfo.getString("COLUMN_SIZE") != null) {
                         length = (Integer.parseInt(colInfo.getString("COLUMN_SIZE")));
                     }
-                    currentColumn = NumericColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable, length);
+                    currentColumn = NumericColumnFactory.createColumn(typeNumber, typeName, colName, defaultVal, nullable, length);
 
                     break;
 
@@ -68,7 +70,7 @@ public abstract class ColumnFactory {
 
                         length = (Integer.parseInt(colInfo.getString("COLUMN_SIZE")));
                     }
-                    currentColumn = TextColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable, length);
+                    currentColumn = TextColumnFactory.createColumn(typeNumber, typeName, colName, defaultVal, nullable, length);
 
                     break;
 
@@ -80,7 +82,8 @@ public abstract class ColumnFactory {
                 case Types.TIMESTAMP:
                 case Types.TIMESTAMP_WITH_TIMEZONE:
 
-                    currentColumn = TemporalColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable);
+                    currentColumn = TemporalColumnFactory.createColumn(typeNumber, typeName, colName, defaultVal, nullable);
+                    break;
 
                 //Document
                 case Types.BINARY:
@@ -93,16 +96,20 @@ public abstract class ColumnFactory {
                 case Types.SQLXML:
                 case Types.DATALINK:
 
-                    currentColumn = DocumentColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable);
+                    currentColumn = DocumentColumnFactory.createColumn(typeNumber, typeName, colName, defaultVal, nullable);
+                    break;
+
 
                 //List
                 case Types.ARRAY:
                 case Types.STRUCT:
 
-                    currentColumn = ListColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable);
+                    currentColumn = ListColumnFactory.createColumn(typeNumber, typeName, colName, defaultVal, nullable);
+                    break;
 
                 default:
                     log.debug("Unknown SQL Type : " + typeName.toString());
+                    break;
             }
 
 

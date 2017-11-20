@@ -73,7 +73,7 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
-							<mainClass>isep.lab2.databaseScript.GenerateScript</mainClass>
+							<mainClass>isep.lab2.db.script.GenerateScript</mainClass>
 						</configuration>
 					</execution>
 				</executions>
