@@ -23,9 +23,9 @@ public class TextColumn extends DbColumn {
 	}
 
 	public String toSQL() {
-		String nullable = this.isNullable() ? "NULL" : "NOT NULL";
-		String defaultVal = this.getDefaultValue() != null ? "DEFAULT " + this.getDefaultValue() : "";
+		String nullable = this.isNullable() ? "" : " NOT NULL";
+		String defaultVal = this.getDefaultValue() != null ? " DEFAULT " + this.getDefaultValue() : "";
 
-		return ("'" + this.getName() + "' " + this.getType() + "("+ this.getLength() +")" + " " + nullable + " " + defaultVal + ",\n");
+		return ("'" + this.getName() + "' " + this.getType() + "("+ this.getLength() +")" + nullable + defaultVal + ",\n");
 	}
 }

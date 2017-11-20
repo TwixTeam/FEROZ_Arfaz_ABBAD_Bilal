@@ -64,6 +64,11 @@ public abstract class DbColumn {
 		isNullable = nullable;
 	}
 
-	public abstract String toSQL();
+	public String toSQL() {
+		String nullable = this.isNullable() ? "" : " NOT NULL";
+		String defaultVal = this.getDefaultValue() != null ? " DEFAULT " + this.getDefaultValue() : "";
+
+		return ("'" + this.getName() + "' " + this.getType() + nullable + defaultVal + ",\n");
+	}
 
 }

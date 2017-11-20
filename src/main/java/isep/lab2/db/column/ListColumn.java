@@ -10,9 +10,6 @@ public class ListColumn extends DbColumn{
     }
 
     public String toSQL() {
-        String nullable = this.isNullable() ? "NULL" : "NOT NULL";
-        String defaultVal = this.getDefaultValue() != null ? "DEFAULT " + this.getDefaultValue() : "";
-
-        return ("'" + this.getName() + "' " + this.getType() + " " + nullable + " " + defaultVal + ",\n");
+        return super.toSQL();
     }
 }
