@@ -119,7 +119,7 @@ public abstract class ColumnFactory {
                     break;
 
                 default:
-                    log.debug("Unknown SQL Type : " + typeName.toString());
+                    log.debug("Unknown SQL Type : " + typeName);
                     break;
             }
 

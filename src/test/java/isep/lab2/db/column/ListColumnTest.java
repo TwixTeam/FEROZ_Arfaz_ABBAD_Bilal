@@ -16,12 +16,12 @@ public class ListColumnTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		column = new ListColumn(Types.ARRAY, "array", "test_name", "NULL", true);
+		column = new ListColumn("test_table", Types.ARRAY, "array", "test_column", "NULL", true);
 	}
 	
 	public void testApp() {
 		log.info("***"+column.toSQL()+"***");
-		assertTrue("'test_name' array DEFAULT NULL,\n".equals(column.toSQL()));
+		assertTrue("\t'test_column' array DEFAULT NULL,\n".equals(column.toSQL()));
 		log.info("ListColumn Object OK");
 	}
 }

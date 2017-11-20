@@ -16,11 +16,12 @@ public class NumericColumnTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		column = new NumericColumn(Types.TINYINT, "tinyint", "test_name", "NULL", true, 3);
+		column = new NumericColumn("test_table", Types.TINYINT, "tinyint", "test_column", "NULL", true, "3", true);
 	}
 
 	public void testApp() {
-		assertTrue("'test_name' tinyint(3) DEFAULT NULL,\n".equals(column.toSQL()));
+		log.info("***"+column.toSQL()+"***");
+		assertTrue("\t'test_column' tinyint(3) UNSIGNED DEFAULT NULL,\n".equals(column.toSQL()));
 		log.info("NumericColumn Object OK");
 	}
 }

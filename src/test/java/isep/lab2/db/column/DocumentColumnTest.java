@@ -15,8 +15,11 @@ public class DocumentColumnTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		column = new DocumentColumn(255, "BLOB", "test_Name", "", true);
+		column = new DocumentColumn("test_table", 255, "BLOB", "test_column", "", true);
 	}
 
-
+	public void testApp() {
+		log.info("***"+column.toSQL()+"***");
+		assertTrue("\t'test_column' BLOB DEFAULT ,\n".equals(column.toSQL()));
+	}
 }
