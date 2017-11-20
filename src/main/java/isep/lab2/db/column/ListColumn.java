@@ -9,7 +9,4 @@ public class ListColumn extends DbColumn{
         super(tableName, intType, type, name, defaultVal, nullable);
     }
 
-    public String toSQL() {
-        return super.toSQL();
-    }
 }

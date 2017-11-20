@@ -11,6 +11,7 @@ public class DbTable {
 
 	private String name;
 	private ArrayList<DbColumn> columns;
+	private
 
 	public DbTable() {
 		this.columns = new ArrayList<>();
