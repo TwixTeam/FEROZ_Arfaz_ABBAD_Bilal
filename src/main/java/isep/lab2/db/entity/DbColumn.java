@@ -6,68 +6,30 @@ package isep.lab2.db.entity;
 public class DbColumn {
 
 	private String type;
+	private int intType;
 	private String name;
 	private String defaultValue;
-	private boolean isUnique;
 	private boolean isNullable;
-	private boolean isPrimary;
-	private boolean isForeign;
 
-	public enum SQLTypes {
-		TINYINT,
-		SMALLINT,
-		MEDIUMINT,
-		INT, 
-		BIGINT, 
-		DECIMAL, 
-		FLOAT, 
-		DOUBLE, 
-		REAL, 
-		BIT, 
-		BOOLEAN, 
-		SERIAL, 
-		DATE, 
-		DATETIME, 
-		TIMESTAMP, 
-		TIME, 
-		YEAR, 
-		CHAR, 
-		VARCHAR, 
-		TINYTEXT, 
-		TEXT, 
-		MEDIUMTEXT, 
-		LONGTEXT, 
-		BINARY, 
-		VARBINARY, 
-		TINYBLOP, 
-		MEDIUMBLOP, 
-		BLOP, 
-		LONGBLOP, 
-		ENUM, 
-		SET, 
-		GEOMETRY, 
-		POINT, 
-		LINESTRING, 
-		POLYGON, 
-		MULTIPOINT, 
-		MULTILINESTRING, 
-		MULTIPOLYGON, 
-		GEOMETRYCOLLECTION, 
-		JSON
-	};
 
 	public DbColumn() {
 	}
 
-	public DbColumn(String type, String name, String defaultVal, boolean uniq,
-			boolean nullable, boolean prim, boolean foreign) {
+	public DbColumn(int intType, String type, String name, String defaultVal,
+			boolean nullable) {
+		this.intType = intType;
 		this.type = type;
 		this.name = name;
 		this.defaultValue = defaultVal;
-		this.isUnique = uniq;
 		this.isNullable = nullable;
-		this.isPrimary = prim;
-		this.isForeign = foreign;
+	}
+
+	public int getIntType() {
+		return intType;
+	}
+
+	public void setIntType(int intType) {
+		this.intType = intType;
 	}
 
 	public String getType() {
@@ -94,14 +56,6 @@ public class DbColumn {
 		this.defaultValue = defaultValue;
 	}
 
-	public boolean isUnique() {
-		return isUnique;
-	}
-
-	public void setUnique(boolean unique) {
-		isUnique = unique;
-	}
-
 	public boolean isNullable() {
 		return isNullable;
 	}
@@ -110,19 +64,4 @@ public class DbColumn {
 		isNullable = nullable;
 	}
 
-	public boolean isPrimary() {
-		return isPrimary;
-	}
-
-	public void setPrimary(boolean primary) {
-		isPrimary = primary;
-	}
-
-	public boolean isForeign() {
-		return isForeign;
-	}
-
-	public void setForeign(boolean foreign) {
-		isForeign = foreign;
-	}
 }

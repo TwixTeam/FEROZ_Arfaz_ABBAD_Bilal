@@ -1,13 +1,13 @@
 package isep.lab2.db.factory;
 
-import isep.lab2.db.column.NumericColumn;
-import isep.lab2.db.column.TextColumn;
+
 import isep.lab2.db.entity.DbColumn;
 import org.apache.log4j.*;
 import isep.lab2.db.entity.DbTable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 public abstract class ColumnFactory {
 
@@ -16,84 +16,93 @@ public abstract class ColumnFactory {
 
     public static DbColumn createColumn(DbTable table, ResultSet colInfo) {
 
-        DbColumn.SQLTypes type;
+        int typeNumber;
+        int length=0;
+        String typeName;
         DbColumn currentColumn = null;
 
 
         try {
-            type = DbColumn.SQLTypes.valueOf(colInfo.getString("COLUMN_TYPE").split(" ")[0]);
+            typeNumber = colInfo.getInt("DATA_TYPE");
+            typeName = colInfo.getString("COLUMN_TYPE").split(" ")[0];
 
             String colName = colInfo.getString("COLUMN_NAME");
             String defaulVal = colInfo.getString("COLUMN_DEF");
             boolean nullable = colInfo.getString("IS_NULLABLE").equals("YES");
 
+            if(typeName.toUpperCase().equals("ENUM") || typeName.toUpperCase().equals("SET")) {
+                typeNumber = Types.VARCHAR;
+            }
 
-            switch(type) {
+            switch(typeNumber) {
                 // Numeric
-                case TINYINT:
-                case SMALLINT:
-                case MEDIUMINT:
-                case BIGINT:
-                case INT:
-                case DECIMAL:
-                case FLOAT:
-                case DOUBLE:
-                case REAL:
-                case BIT:
-                case BOOLEAN:
-                case SERIAL:
-
-                    boolean auto_incr = colInfo.getString("IS_AUTOINCREMENT").equals("YES");
+                case Types.BIGINT:
+                case Types.BIT:
+                case Types.DECIMAL:
+                case Types.FLOAT:
+                case Types.INTEGER:
+                case Types.NUMERIC:
+                case Types.REAL:
+                case Types.SMALLINT:
+                case Types.TINYINT:
+                case Types.BOOLEAN:
+                case Types.DOUBLE:
 
                     if(colInfo.getString("COLUMN_SIZE") != null) {
-                        int length = (Integer.parseInt(colInfo.getString("COLUMN_SIZE")));
+                        length = (Integer.parseInt(colInfo.getString("COLUMN_SIZE")));
                     }
+                    currentColumn = NumericColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable, length);
 
-                // Temporal
-                case DATE:
-                case DATETIME:
-                case TIMESTAMP:
-                case TIME:
-                case YEAR:
-
+                    break;
 
 
                 //Text
-                case CHAR:
-                case VARCHAR:
-                case TINYTEXT:
-                case MEDIUMTEXT:
-                case LONGTEXT:
-                case BINARY:
+                case Types.CHAR:
+                case Types.VARCHAR:
+                case Types.LONGNVARCHAR:
+                case Types.LONGVARCHAR:
+                case Types.NCHAR:
+                case Types.NVARCHAR:
 
+                    if(colInfo.getString("COLUMN_SIZE") != null) {
+
+                        length = (Integer.parseInt(colInfo.getString("COLUMN_SIZE")));
+                    }
+                    currentColumn = TextColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable, length);
+
+                    break;
+
+
+                // Temporal
+                case Types.DATE:
+                case Types.TIME:
+                case Types.TIME_WITH_TIMEZONE:
+                case Types.TIMESTAMP:
+                case Types.TIMESTAMP_WITH_TIMEZONE:
+
+                    currentColumn = TemporalColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable);
 
                 //Document
-                case VARBINARY:
-                case TINYBLOP:
-                case MEDIUMBLOP:
-                case BLOP:
-                case LONGBLOP:
-                case TEXT:
+                case Types.BINARY:
+                case Types.LONGVARBINARY:
+                case Types.VARBINARY:
+                case Types.BLOB:
+                case Types.CLOB:
+                case Types.NCLOB:
+                case Types.JAVA_OBJECT:
+                case Types.SQLXML:
+                case Types.DATALINK:
 
+                    currentColumn = DocumentColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable);
 
                 //List
-                case ENUM:
-                case SET:
+                case Types.ARRAY:
+                case Types.STRUCT:
 
-
-                //Spatial
-                case GEOMETRY:
-                case POINT:
-                case LINESTRING:
-                case POLYGON:
-                case MULTIPOINT:
-                case MULTILINESTRING:
-                case MULTIPOLYGON:
-                case GEOMETRYCOLLECTION:
-                case JSON:
+                    currentColumn = ListColumnFactory.createColumn(typeNumber, typeName, colName, defaulVal, nullable);
 
                 default:
-                    log.debug("Unknown SQL Type : " + type.toString());
+                    log.debug("Unknown SQL Type : " + typeName.toString());
             }
 
 

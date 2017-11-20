@@ -8,9 +8,9 @@ public class TextColumn extends DbColumn {
 	public TextColumn() {
 	}
 
-	public TextColumn(String type, String name, String defaultVal, boolean autoIncr, boolean uniq,
-			boolean nullable, boolean prim, boolean foreign, int length) {
-		super(type, name, defaultVal, uniq, nullable, prim, foreign);
+	public TextColumn(int intType, String type, String name, String defaultVal, boolean nullable, int length) {
+
+		super(intType, type, name, defaultVal, nullable);
 		this.length = length;
 	}
 	
