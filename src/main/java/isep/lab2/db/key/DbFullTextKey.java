@@ -16,4 +16,11 @@ public class DbFullTextKey extends DbKey {
     public void setKeyName(String keyName) {
         this.keyName = keyName;
     }
+
+    public String toSQL() {
+
+        String sql = "ADD FULLTEXT KEY '" + keyName + "' " + super.toSQL();
+
+        return sql;
+    }
 }

@@ -60,13 +60,13 @@ public class DbTable {
 	}
 
 	public String toSQLAlterTable() {
-		String script = "ALTER TABLE '" + this.name + "' (\n";
+		String script = "ALTER TABLE '" + this.name + "'\n";
 
-		for(DbKey currentKey : this.getKeys()) {
-			script += currentKey.toSQL();
+		for(int i= 0; i < this.getKeys().size() -1; i++) {
+			script += this.getKeys().get(i) + ",\n";
 		}
 
-		script += ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";
+		script += this.getKeys().get(this.getKeys().size()-1).toSQL() + ";\n";
 
 		return script;
 	}

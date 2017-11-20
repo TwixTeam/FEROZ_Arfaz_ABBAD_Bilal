@@ -51,7 +51,7 @@ public abstract class ColumnFactory {
                 case Types.TINYINT:
                 case Types.BOOLEAN:
                 case Types.DOUBLE:
-
+                    boolean autoIncr = colInfo.getString("IS_AUTOINCREMENT").equals("YES");
                     boolean isUnsigned = colInfo.getString("TYPE_NAME").split(" ").length > 1;
 
                     if(colInfo.getString("COLUMN_SIZE") != null) {
@@ -64,7 +64,7 @@ public abstract class ColumnFactory {
                         log.debug(length);
                     }
 
-                    currentColumn = NumericColumnFactory.createColumn(table.getName(),typeNumber, typeName, colName, defaultVal, nullable, length, isUnsigned);
+                    currentColumn = NumericColumnFactory.createColumn(table.getName(),typeNumber, typeName, colName, defaultVal, nullable, length, isUnsigned, autoIncr);
 
                     break;
 

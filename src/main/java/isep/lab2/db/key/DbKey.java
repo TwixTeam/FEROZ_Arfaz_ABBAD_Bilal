@@ -32,6 +32,14 @@ public abstract class DbKey {
 
     public String toSQL() {
 
-        return "";
+        String targets = " (";
+
+        for(String columnName : this.targetColumns) {
+            targets +="'" + columnName + "', ";
+        }
+
+        targets = ")";
+
+        return targets;
     }
 }

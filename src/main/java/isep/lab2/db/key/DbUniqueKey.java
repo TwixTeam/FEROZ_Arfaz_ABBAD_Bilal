@@ -3,10 +3,12 @@ package isep.lab2.db.key;
 public class DbUniqueKey extends DbKey {
 
     String keyName;
+    boolean unique;
 
-    public DbUniqueKey(String tableName, String keyName) {
+    public DbUniqueKey(String tableName, String keyName, boolean uniq) {
         super(tableName);
         this.keyName = keyName;
+        this.unique = uniq;
     }
 
     public String getKeyName() {
@@ -15,5 +17,14 @@ public class DbUniqueKey extends DbKey {
 
     public void setKeyName(String keyName) {
         this.keyName = keyName;
+    }
+
+    public String toSQL() {
+
+        String uniqueStatement = this.unique ? " UNIQUE" : "";
+
+        String sql = "ADD" + uniqueStatement + " KEY '" + keyName + "' " + super.toSQL();
+
+        return sql;
     }
 }

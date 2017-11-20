@@ -3,6 +3,7 @@ package isep.lab2.db.key;
 public class DbForeignKey extends DbKey {
 
     String keyName;
+    String referencedKey;
 
 
     public DbForeignKey(String tableName, String keyName) {
@@ -16,5 +17,12 @@ public class DbForeignKey extends DbKey {
 
     public void setKeyName(String keyName) {
         this.keyName = keyName;
+    }
+
+    public String toSQL() {
+
+        String sql = "ADD KEY '" + keyName + "' " + super.toSQL();
+
+        return sql;
     }
 }
