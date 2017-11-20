@@ -64,4 +64,6 @@ public abstract class DbColumn {
 		isNullable = nullable;
 	}
 
+	public abstract String toSQL();
+
 }

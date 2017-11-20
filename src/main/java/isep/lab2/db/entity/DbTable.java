@@ -36,4 +36,14 @@ public class DbTable {
 	public void setColumns(ArrayList<DbColumn> columns) {
 		this.columns = columns;
 	}
+
+	public void toSQL() {
+		String script = "CREATE TABLE '" + this.name + "' (\n";
+
+		for(DbColumn currentColumn : this.getColumns()) {
+			script += currentColumn.toSQL();
+		}
+
+		script += "\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+	}
 }

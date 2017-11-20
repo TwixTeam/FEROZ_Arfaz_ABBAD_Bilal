@@ -21,4 +21,11 @@ public class TextColumn extends DbColumn {
 	public void setLength(int length) {
 		this.length = length;
 	}
+
+	public String toSQL() {
+		String nullable = this.isNullable() ? "NULL" : "NOT NULL";
+		String defaultVal = this.getDefaultValue() != null ? "DEFAULT " + this.getDefaultValue() : "";
+
+		return ("'" + this.getName() + "' " + this.getType() + "("+ this.getLength() +")" + " " + nullable + " " + defaultVal + ",\n");
+	}
 }

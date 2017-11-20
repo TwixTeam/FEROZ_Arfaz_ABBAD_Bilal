@@ -22,4 +22,10 @@ public class NumericColumn extends DbColumn {
 		this.length = length;
 	}
 
+	public String toSQL() {
+		String nullable = this.isNullable() ? "NULL" : "NOT NULL";
+		String defaultVal = this.getDefaultValue() != null ? "DEFAULT " + this.getDefaultValue() : "";
+
+		return ("'" + this.getName() + "' " + this.getType() + "("+ this.getLength() +")" + " " + nullable + " " + defaultVal + ",\n");
+	}
 }

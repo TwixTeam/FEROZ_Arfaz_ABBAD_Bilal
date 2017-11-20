@@ -33,7 +33,6 @@ public class GenerateScript {
 
 	      	ArrayList<DbTable> tables = getTablesName();
 
-			getTableColumns(tables);
 
 			generateDbScript(tables);
 
@@ -86,7 +85,7 @@ public class GenerateScript {
 	}
 
 	private static void generateDbScript(ArrayList<DbTable> tables) {
-			PrintWriter writer = null;
+			/*PrintWriter writer = null;
 
 			try {
 				writer = new PrintWriter("generatedDbScript.sql", "UTF-8");
@@ -117,6 +116,6 @@ public class GenerateScript {
 				if (writer != null) {
 					writer.close();
 				}
-			}
+			}*/
 	}
 }
