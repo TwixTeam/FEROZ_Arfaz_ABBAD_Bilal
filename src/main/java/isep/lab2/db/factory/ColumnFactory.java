@@ -30,11 +30,11 @@ public abstract class ColumnFactory {
             String defaultVal = colInfo.getString("COLUMN_DEF");
             boolean nullable = colInfo.getString("IS_NULLABLE").equals("YES");
 
-            if(typeName.toUpperCase().equals("ENUM") || typeName.toUpperCase().equals("SET")) {
+            if(typeName.equalsIgnoreCase("ENUM") || typeName.equalsIgnoreCase("SET")) {
                 typeNumber = Types.VARCHAR;
             }
 
-            else if(typeName.toUpperCase().equals("TEXT")) {
+            else if(typeName.equalsIgnoreCase("TEXT")) {
                 typeNumber = Types.BLOB;
             }
 

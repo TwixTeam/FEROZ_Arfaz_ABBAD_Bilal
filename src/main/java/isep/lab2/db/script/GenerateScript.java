@@ -30,20 +30,22 @@ public class GenerateScript {
 	      	log.info("Getting MetaData...");
 	      	metadata = connection.getMetaData();
 
-
 	      	ArrayList<DbTable> tables = getTablesName();
-
 
 			generateDbScript(tables);
 
-
-	      	connection.close();
 	   	} catch(SQLException se){
 	   		log.error("SQLException : " + se);
 
 	   	} catch(Exception e){
 	   		log.error("Exception : " + e);
 
+		} finally {
+	      	try {
+				connection.close();
+			} catch (SQLException se) {
+				log.error("SQLException : " + se);
+			}
 		}
 	}
 

@@ -20,8 +20,8 @@ public class TemporalColumnTest extends TestCase {
 	}
 	
 	public void testApp() {
-		log.info("***"+column.toSQL()+"***");
+		log.debug("Column sql : " + column.toSQL());
 		assertTrue("\t'test_column' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n".equals(column.toSQL()));
-		log.info("ListColumn Object OK");
+		log.info("TemporalColumn Object OK");
 	}
 }

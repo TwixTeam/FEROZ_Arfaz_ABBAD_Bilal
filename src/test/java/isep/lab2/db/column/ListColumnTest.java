@@ -20,7 +20,7 @@ public class ListColumnTest extends TestCase {
 	}
 	
 	public void testApp() {
-		log.info("***"+column.toSQL()+"***");
+		log.debug("Column sql : " + column.toSQL());
 		assertTrue("\t'test_column' array DEFAULT NULL,\n".equals(column.toSQL()));
 		log.info("ListColumn Object OK");
 	}

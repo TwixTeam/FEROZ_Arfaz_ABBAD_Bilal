@@ -20,7 +20,7 @@ public class NumericColumnTest extends TestCase {
 	}
 
 	public void testApp() {
-		log.info("***"+column.toSQL()+"***");
+		log.debug("Column sql : " + column.toSQL());
 		assertTrue("\t'test_column' tinyint(3) UNSIGNED DEFAULT NULL,\n".equals(column.toSQL()));
 		log.info("NumericColumn Object OK");
 	}

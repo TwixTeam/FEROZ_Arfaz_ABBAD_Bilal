@@ -19,7 +19,8 @@ public class DocumentColumnTest extends TestCase {
 	}
 
 	public void testApp() {
-		log.info("***"+column.toSQL()+"***");
+		log.debug("Column sql : " + column.toSQL());
 		assertTrue("\t'test_column' BLOB DEFAULT ,\n".equals(column.toSQL()));
+		log.info("DocumentColumn Object OK");
 	}
 }

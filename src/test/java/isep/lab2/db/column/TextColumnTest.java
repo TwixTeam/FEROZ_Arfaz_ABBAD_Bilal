@@ -20,7 +20,7 @@ public class TextColumnTest extends TestCase {
 	}
 	
 	public void testApp() {
-		log.info("***"+column.toSQL()+"***");
+		log.debug("Column sql : " + column.toSQL());
 		assertTrue("\t'test_column' varchar(255) DEFAULT NULL,\n".equals(column.toSQL()));
 		log.info("DocumentColumn Object OK");
 	}
