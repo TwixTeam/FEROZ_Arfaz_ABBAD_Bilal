@@ -16,7 +16,7 @@ public class NumericColumnTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		column = new NumericColumn("test_table", Types.TINYINT, "tinyint", "test_column", "NULL", true, "3", true);
+		column = new NumericColumn("test_table", Types.TINYINT, "tinyint", "test_column", "NULL", true, "3", true, false);
 	}
 
 	public void testApp() {
