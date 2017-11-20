@@ -19,6 +19,14 @@ public class DbUniqueKey extends DbKey {
         this.keyName = keyName;
     }
 
+    public boolean isUnique() {
+        return unique;
+    }
+
+    public void setUnique(boolean unique) {
+        this.unique = unique;
+    }
+
     public String toSQL() {
 
         String uniqueStatement = this.unique ? " UNIQUE" : "";

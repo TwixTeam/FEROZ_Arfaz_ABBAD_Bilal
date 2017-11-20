@@ -1,11 +1,18 @@
 package isep.lab2.db.key;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public abstract class DbKey {
 
     private String table;
-    private List<String> targetColumns;
+    private ArrayList<String> targetColumns;
+
+    public enum Types {
+        PRIMARY,
+        UNIQUE,
+        FOREIGN,
+        FULLTEXT
+    };
 
     public DbKey() {
     }
@@ -22,11 +29,11 @@ public abstract class DbKey {
         this.table = table;
     }
 
-    public List<String> getTargetColumns() {
+    public ArrayList<String> getTargetColumns() {
         return targetColumns;
     }
 
-    public void setTargetColumns(List<String> targetColumns) {
+    public void setTargetColumns(ArrayList<String> targetColumns) {
         this.targetColumns = targetColumns;
     }
 
