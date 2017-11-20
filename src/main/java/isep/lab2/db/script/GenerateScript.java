@@ -92,7 +92,7 @@ public class GenerateScript {
 				writer = new PrintWriter("generatedDbScript.sql", "UTF-8");
 				for (DbTable table : tables) {
 
-					writer.println(table.toSQL());
+					writer.println(table.toSQLCreateTable());
 
 				}
 

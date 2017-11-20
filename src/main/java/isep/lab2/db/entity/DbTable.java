@@ -47,11 +47,23 @@ public class DbTable {
 		this.keys = keys;
 	}
 
-	public String toSQL() {
+	public String toSQLCreateTable() {
 		String script = "CREATE TABLE '" + this.name + "' (\n";
 
 		for(DbColumn currentColumn : this.getColumns()) {
 			script += currentColumn.toSQL();
+		}
+
+		script += ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";
+
+		return script;
+	}
+
+	public String toSQLAlterTable() {
+		String script = "ALTER TABLE '" + this.name + "' (\n";
+
+		for(DbKey currentKey : this.getKeys()) {
+			script += currentKey.toSQL();
 		}
 
 		script += ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";

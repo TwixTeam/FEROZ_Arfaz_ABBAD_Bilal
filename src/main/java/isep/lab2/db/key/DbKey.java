@@ -29,4 +29,9 @@ public abstract class DbKey {
     public void setTargetColumns(List<String> targetColumns) {
         this.targetColumns = targetColumns;
     }
+
+    public String toSQL() {
+
+        return "";
+    }
 }
