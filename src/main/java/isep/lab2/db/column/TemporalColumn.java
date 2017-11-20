@@ -12,6 +12,12 @@ public class TemporalColumn extends DbColumn {
 	}
 
 	public String toSQL() {
-		return super.toSQL();
+		String sql = super.toSQL();
+
+		if(this.getType().equals("TIMESTAMP")) {
+			sql =  super.toSQL().split(",")[0] + " ON UPDATE CURRENT_TIMESTAMP\n";
+		}
+
+		return sql;
 	}
 }
